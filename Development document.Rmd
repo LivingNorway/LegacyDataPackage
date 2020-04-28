@@ -1,0 +1,170 @@
+---
+title: "Development document"
+author: "Matt"
+date: "27 4 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Development of the data package for Living Norway
+
+This document serves to outline the desired development of the package 
+
+## Typical workflow
+
+```{r workflow diagram, echo=F, warning=F, message=F}
+library(DiagrammeR)
+grViz("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+
+      # edge definitions with the node IDs
+      tab1 -> tab2 -> tab3 -> tab4 -> tab5->tab6;
+      }
+
+      [1]: 'Create folder structure'
+      [2]: 'Write minimum metadata'
+      [3]: 'Upload scanned pdfs of field & lab notes to data scan folder'
+      [4]: 'Upload raw data to raw data folder'
+      [5]: 'Data cleaning files stored in to mapped data folder'
+      [6]: 'Metadata saved in xml format in the meta_xml folder'
+      ")
+
+
+
+```
+
+## Create folder structure
+
+### R functions
+
+#### build_folder_structure()
+
+```{r, echo=T}
+#build_folder_structure<-function(project_name=project_name){
+#  if(dir.exists(project_name)==TRUE) {
+#    print("Directory already exists please check the name and retry")
+#  } else{
+#    dir.create(paste0(getwd(),"/", project_name))
+#   dir.create(paste0(getwd(),"/", project_name,"/", "minimum_metadata"))
+#     dir.create(paste0(getwd(),"/",project_name,"/", "data"))
+#     dir.create(paste0(getwd(),"/", project_name,"/","data", "/", "raw_data"))
+#     dir.create(paste0(getwd(),"/", project_name,"/","data", "/", "mapped_data"))
+#     dir.create(paste0(getwd(),"/", project_name,"/","data", "/", "scan_data"))
+#     dir.create(paste0(getwd(),"/", project_name,"/","scripts"))
+#     dir.create(paste0(getwd(),"/", project_name,"/","meta_xml"))
+#     dir.create(paste0(getwd(),"/", project_name,"/","dmp"))
+#     rmarkdown::draft(paste0(getwd(),"/", project_name,"/", "minimum_metadata", "/"
+#                             ,"minimum_metadata.Rmd"),
+#                      template="minimum_metadata", package="TheDataPackage", edit=FALSE)
+#       }
+# 
+# }
+# 
+# build_folder_structure(project_name = "Test")
+
+```
+
+##### Code registration
+
+Objective::To create the folder structure for a biodiversity project. The structure is as follows:
+
+```
+├── minimum_metadata.txt (or .md)
+├── docs/  -dokumentation (e.g. procedual reports, laboratory protocols)
+├── data/ 
+|   ├── scan_data/ - analog data in digital format
+|   ├── raw_data/ - raw data - born digital or punched from paper forms
+|   ├── mapped_data/ - data mapped from raw data 
+├── src/ - scripts et al. used for mapping data
+├── meta.xml - metadata in EML
+├── dmp.xxx - data managment plan
+
+```
+Inputs::The name of the project directory 
+
+Outputs:: A set of folders following the desired structure. A minimum metadata template
+
+Enhancements:: 
+* Semi-automation of the metadata 
+* Automatic reporting of contents of folders once the user has populated them
+
+## Write minimum metadata
+
+Users will be required to fill in the minimum metadata template
+
+### R functions
+
+#### Validate the data package
+
+##### Code registration
+
+Objective:: A function which checks that the metadata has been filled in and that folders contain files of type x.
+
+Inputs:: A project folder
+
+Outputs:: A list of files in each folder, with file type so that the user can confirm for themselves that the data package is complete
+
+Enhancements::
+
+
+## Upload scanned datasheets
+
+Users will be required to scan and upload datasheets
+
+### R functions
+
+#### Validate the data package
+As above
+
+## Upload raw data
+
+Users will be required to upload raw data
+
+### R functions
+
+#### Validate the data package
+As above
+
+## Mapped data
+
+Manipulations and changes to raw data will be saved by the user in this folder. 
+
+[Should we add some generic data cleaning tools here or leave it to the user?]
+
+### R functions
+
+#### Validate the data package
+As above
+
+
+## Metadata in XML format
+
+### R functions
+
+#### Convert metadata to XML
+Borrow heavily from EML, emld etc. to convert metadata to XML.
+
+##### Code registration
+
+Objective:: To provide convenient wrapper functions for converting data pack to eml/XML format
+
+Inputs:: R data frame or list of lists
+
+Outputs:: An eml file 
+
+Enhancements:: A Shiny App to make eml (make the workflow in a shiny app)
+
+
+
+
+

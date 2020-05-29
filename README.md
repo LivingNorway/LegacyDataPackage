@@ -42,7 +42,7 @@ TheDataPackage is still in development but you can download the latest version u
 devtools::install_github("LivingNorway/TheDataPackage")
 
 # Run the demo 
-There is a short (very short at the moment) example workflow that will lead you through some of the steps in developing a data package. Use the following code and follow the instructions shown in your console:
+There is a short (very short at the moment) example workflow that will lead you through some of the steps in developing a data package. We recommend opening a new Project in RStudio and then running the following code in it. Follow the instructions shown in your console:
 
 demo("workflow_example",package="TheDataPackage")
 

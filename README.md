@@ -32,3 +32,17 @@ A typical project, either involving data rescue of legacy-data or contemporary d
 6. meta.xml contains metadata in machine readable form using the EML metadata language.
 
 Also, the general [guidlines from BES](https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf) could be useful.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Install the DataPackage
+
+TheDataPackage is still in development but you can download the latest version using the following code: 
+
+devtools::install_github("LivingNorway/TheDataPackage")
+
+# Run the demo 
+There is a short (very short at the moment) example workflow that will lead you through some of the steps in developing a data package. We recommend opening a new Project in RStudio and then running the following code in it. Follow the instructions shown in your console:
+
+demo("workflow_example",package="TheDataPackage")
+

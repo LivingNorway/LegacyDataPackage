@@ -1,12 +1,18 @@
 # Workflow example
 
 
-# Load libraries ----------------------------------------------------------
+# Are libraries installed? ------------------------------------------------
 
+list.of.packages <- c("TheDataPackage", "tidyverse", "here", "PBSmodelling")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
+
+# Load libraries ----------------------------------------------------------
 library(TheDataPackage)
 library(tidyverse)
 library(here)
-library(PBSmodelling)
+#library(PBSmodelling)
 
 
 # build folder structure --------------------------------------------------
@@ -27,4 +33,4 @@ write.csv(raw_data, here(paste0(project_name,"/data","/raw_data/raw_data.csv")))
 
 # open minimum metadata
 
-PBSmodelling::openFile(fname=here(paste0(project_name,"/minimum_metadata","/minimum_metadata/minimum_metadata.Rmd")))
+#PBSmodelling::openFile(fname=here(paste0(project_name,"/minimum_metadata","/minimum_metadata/minimum_metadata.Rmd")))

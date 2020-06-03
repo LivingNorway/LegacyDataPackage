@@ -1,3 +1,5 @@
+This repository is no longer being updated as many of the functions will be moved to https://github.com/LivingNorway/LivingNorwayR
+
 # TheDataPackage
 Repro containing suggestive archive structure and procedures for data storage
 
